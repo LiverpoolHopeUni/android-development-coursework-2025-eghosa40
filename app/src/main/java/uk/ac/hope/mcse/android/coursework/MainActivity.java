@@ -20,6 +20,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Test commit to confirm Git and GitHub connection
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
