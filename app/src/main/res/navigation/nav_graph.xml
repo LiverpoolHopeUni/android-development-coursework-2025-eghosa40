@@ -25,4 +25,10 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addMoodFragment"
+        android:name="uk.ac.hope.mcse.android.coursework.ui.AddMoodFragment"
+        android:label="Add Mood"
+        tools:layout="@layout/fragment_add_mood"/>
+
 </navigation>
