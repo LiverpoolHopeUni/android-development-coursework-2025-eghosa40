@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">CourseworkApp</string>
     <string name="action_settings">Settings</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <!-- Placeholder text -->
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -43,4 +45,13 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+    <!-- Mood Logger strings -->
+    <string name="mood_prompt">How are you feeling today?</string>
+    <string name="happy">😊</string>
+    <string name="sad">😢</string>
+    <string name="angry">😠</string>
+    <string name="calm">😌</string>
+    <string name="save_mood">Save Mood</string>
+    <string name="add_note_hint">Add a note (optional)</string>
 </resources>

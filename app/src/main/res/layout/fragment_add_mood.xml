@@ -1,20 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <!-- Example UI -->
+    <!-- Mood selection title -->
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/moodTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="356dp"
-        android:text="How are you feeling?"
+        android:text="@string/mood_prompt"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="8dp" />
 
-    <!-- Add Spinner, Emojis, or Input as needed -->
+    <!-- Mood selection via RadioGroup -->
+    <RadioGroup
+        android:id="@+id/moodRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/moodTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp">
 
+        <RadioButton
+            android:id="@+id/happyRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/happy"
+            android:minHeight="48dp"
+            android:minWidth="48dp" />
+
+        <RadioButton
+            android:id="@+id/sadRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sad"
+            android:minHeight="48dp"
+            android:minWidth="48dp" />
+
+        <RadioButton
+            android:id="@+id/angryRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/angry"
+            android:minHeight="48dp"
+            android:minWidth="48dp" />
+
+        <RadioButton
+            android:id="@+id/calmRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calm"
+            android:minHeight="48dp"
+            android:minWidth="48dp" />
+    </RadioGroup>
+
+    <!-- Optional note input -->
+    <EditText
+        android:id="@+id/noteEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:hint="@string/add_note_hint"
+        android:importantForAutofill="yes"
+        android:textColor="@android:color/black"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@id/moodRadioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/saveMoodButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_mood"
+        app:layout_constraintTop_toBottomOf="@id/noteEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

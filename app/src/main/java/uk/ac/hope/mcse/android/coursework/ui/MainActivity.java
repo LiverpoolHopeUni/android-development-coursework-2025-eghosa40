@@ -1,9 +1,8 @@
-package uk.ac.hope.mcse.android.coursework;
+package uk.ac.hope.mcse.android.coursework.ui;
 
 import static androidx.navigation.Navigation.findNavController;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -12,8 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import uk.ac.hope.mcse.android.coursework.R;
 import uk.ac.hope.mcse.android.coursework.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
