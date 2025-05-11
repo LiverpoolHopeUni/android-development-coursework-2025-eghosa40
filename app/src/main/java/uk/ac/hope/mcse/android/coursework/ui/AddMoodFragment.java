@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import uk.ac.hope.mcse.android.coursework.R;
 import uk.ac.hope.mcse.android.coursework.model.MoodDatabase;
@@ -22,14 +25,11 @@ public class AddMoodFragment extends Fragment {
     private RadioGroup moodRadioGroup;
     private EditText noteEditText;
 
-    public AddMoodFragment() {
-        // Required empty public constructor
-    }
+    public AddMoodFragment() {}
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_add_mood, container, false);
     }
 
@@ -39,7 +39,9 @@ public class AddMoodFragment extends Fragment {
 
         moodRadioGroup = view.findViewById(R.id.moodRadioGroup);
         noteEditText = view.findViewById(R.id.noteEditText);
-        View saveButton = view.findViewById(R.id.saveMoodButton);
+
+        Button saveButton = view.findViewById(R.id.saveMoodButton);
+        Button backButton = view.findViewById(R.id.backButton);
 
         saveButton.setOnClickListener(v -> {
             int selectedId = moodRadioGroup.getCheckedRadioButtonId();
@@ -57,12 +59,15 @@ public class AddMoodFragment extends Fragment {
             MoodDatabase db = MoodDatabase.getInstance(requireContext());
             db.moodDao().insert(entry);
 
-            Toast.makeText(getContext(), "Mood saved successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Mood saved!", Toast.LENGTH_SHORT).show();
 
-            // Optional: Clear fields or navigate back
             moodRadioGroup.clearCheck();
             noteEditText.setText("");
         });
+
+        backButton.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(view);
+            navController.popBackStack();
+        });
     }
 }
-

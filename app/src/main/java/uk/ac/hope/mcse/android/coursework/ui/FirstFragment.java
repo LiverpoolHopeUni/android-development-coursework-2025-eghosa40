@@ -5,15 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
-import org.jspecify.annotations.NonNull;
+import java.util.List;
 
-import uk.ac.hope.mcse.android.coursework.R;
 import uk.ac.hope.mcse.android.coursework.databinding.FragmentFirstBinding;
+import uk.ac.hope.mcse.android.coursework.model.MoodDatabase;
+import uk.ac.hope.mcse.android.coursework.model.MoodEntry;
+import uk.ac.hope.mcse.android.coursework.R;
 
 public class FirstFragment extends Fragment {
 
@@ -32,17 +34,32 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Existing button
-        binding.buttonFirst.setOnClickListener(v ->
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment)
-        );
+        requireActivity().setTitle("");
 
-        View historyButton = view.findViewById(R.id.viewHistoryButton);
-        historyButton.setOnClickListener(v -> {
+        // View History button
+        binding.viewHistoryButton.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.MoodHistoryFragment);
+            navController.navigate(R.id.SecondFragment);
         });
+
+        // Log Mood Button
+        binding.logMoodButton.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(view);
+            navController.navigate(R.id.addMoodFragment);
+        });
+
+
+        // Show latest mood
+        List<MoodEntry> entries = MoodDatabase.getInstance(requireContext())
+                .moodDao().getAll();
+
+        if (!entries.isEmpty()) {
+            MoodEntry latest = entries.get(0);
+            String preview = latest.mood + " \"" + latest.note + "\"";
+            binding.lastMoodTextView.setText("Last mood: " + preview);
+        } else {
+            binding.lastMoodTextView.setText("Last mood: (none yet)");
+        }
     }
 
     @Override

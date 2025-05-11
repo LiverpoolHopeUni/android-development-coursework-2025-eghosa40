@@ -54,4 +54,10 @@
     <string name="calm">😌</string>
     <string name="save_mood">Save Mood</string>
     <string name="add_note_hint">Add a note (optional)</string>
+
+    <!-- First Fragment strings -->
+    <string name="mood_logger_title">Mood Logger</string>
+    <string name="view_history">📃 View Mood History</string>
+    <string name="last_mood_none">Last mood: (none yet)</string>
+
 </resources>
