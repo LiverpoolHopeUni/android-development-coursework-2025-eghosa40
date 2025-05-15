@@ -17,6 +17,41 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <!-- Mood input -->
+    <EditText
+        android:id="@+id/moodEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter mood"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <!-- Note input -->
+    <EditText
+        android:id="@+id/noteEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Optional note"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/moodEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Save Mood Button -->
+    <Button
+        android:id="@+id/saveMoodButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Mood"
+        style="@style/BlackButton"
+        app:layout_constraintTop_toBottomOf="@id/noteEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
+
     <!-- View Mood History Button -->
     <Button
         android:id="@+id/viewHistoryButton"
@@ -24,18 +59,7 @@
         android:layout_height="wrap_content"
         android:text="@string/view_history"
         style="@style/BlackButton"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"/>
-
-    <!-- Log Mood Button -->
-    <Button
-        android:id="@+id/logMoodButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="😊 Log Mood"
-        style="@style/BlackButton"
-        app:layout_constraintTop_toBottomOf="@id/viewHistoryButton"
+        app:layout_constraintTop_toBottomOf="@id/saveMoodButton"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"/>
 
@@ -46,7 +70,7 @@
         android:layout_height="wrap_content"
         android:text="@string/last_mood_none"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/logMoodButton"
+        app:layout_constraintTop_toBottomOf="@id/viewHistoryButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"/>

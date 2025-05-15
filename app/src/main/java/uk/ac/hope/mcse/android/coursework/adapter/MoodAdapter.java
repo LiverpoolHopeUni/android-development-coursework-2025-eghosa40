@@ -20,6 +20,8 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
 
     private List<MoodEntry> moodList;
 
+    private OnItemClickListener listener;
+
     public List<MoodEntry> getMoodList() {
         return moodList;
     }
@@ -45,6 +47,12 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
                 .format(new Date(mood.timestamp));
         holder.timestampTextView.setText(date);
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(moodList.get(holder.getAdapterPosition()));
+            }
+        });
     }
 
     @Override
@@ -61,6 +69,12 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
             noteTextView = itemView.findViewById(R.id.noteTextView);
             timestampTextView = itemView.findViewById(R.id.timestampTextView);
         }
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+    public interface OnItemClickListener {
+        void onItemClick(MoodEntry moodEntry);
     }
 }
 

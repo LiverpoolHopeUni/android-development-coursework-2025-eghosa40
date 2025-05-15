@@ -94,14 +94,23 @@ public class SecondFragment extends Fragment {
                 .moodDao()
                 .getAll();
 
-        adapter = new MoodAdapter(moodList);
-        recyclerView.setAdapter(adapter);
-
         Collections.sort(moodList, (a, b) -> Long.compare(b.getTimestamp(), a.getTimestamp()));
 
         adapter = new MoodAdapter(moodList);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(moodEntry -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("id", moodEntry.getId());
+            bundle.putString("mood", moodEntry.getMood());
+            bundle.putString("note", moodEntry.getNote());
+            bundle.putLong("timestamp", moodEntry.getTimestamp());
+
+            NavController navController = Navigation.findNavController(requireView());
+            navController.navigate(R.id.action_SecondFragment_to_FirstFragment, bundle);
+        });
     }
+
 }
 
 
