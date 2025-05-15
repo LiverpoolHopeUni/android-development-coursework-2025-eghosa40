@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Collections;
 import java.util.List;
 
 import uk.ac.hope.mcse.android.coursework.R;
@@ -92,6 +93,11 @@ public class SecondFragment extends Fragment {
                 .getInstance(requireContext())
                 .moodDao()
                 .getAll();
+
+        adapter = new MoodAdapter(moodList);
+        recyclerView.setAdapter(adapter);
+
+        Collections.sort(moodList, (a, b) -> Long.compare(b.getTimestamp(), a.getTimestamp()));
 
         adapter = new MoodAdapter(moodList);
         recyclerView.setAdapter(adapter);
