@@ -18,4 +18,20 @@ public class MoodEntry {
         this.note = note;
         this.timestamp = timestamp;
     }
+
+    public String getMood() {
+        return mood;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public int getId() {
+        return id;
+    }
 }

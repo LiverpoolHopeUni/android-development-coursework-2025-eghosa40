@@ -20,6 +20,7 @@ import uk.ac.hope.mcse.android.coursework.R;
 import uk.ac.hope.mcse.android.coursework.adapter.MoodAdapter;
 import uk.ac.hope.mcse.android.coursework.model.MoodDatabase;
 import uk.ac.hope.mcse.android.coursework.model.MoodEntry;
+import uk.ac.hope.mcse.android.coursework.util.MoodExportHelper;
 
 public class SecondFragment extends Fragment {
 
@@ -41,10 +42,21 @@ public class SecondFragment extends Fragment {
         recyclerView = view.findViewById(R.id.moodRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        // Back button
         Button backButton = view.findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(view);
             navController.popBackStack();
+        });
+
+        // 🚀 Export button
+        Button exportButton = view.findViewById(R.id.exportButton);
+        exportButton.setOnClickListener(v -> {
+            List<MoodEntry> moods = MoodDatabase
+                    .getInstance(requireContext())
+                    .moodDao()
+                    .getAll();
+            MoodExportHelper.exportMoodsToFile(requireContext(), moods);
         });
     }
 
