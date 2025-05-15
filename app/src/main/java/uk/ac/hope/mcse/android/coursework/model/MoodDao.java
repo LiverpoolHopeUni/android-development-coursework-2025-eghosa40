@@ -1,6 +1,7 @@
 package uk.ac.hope.mcse.android.coursework.model;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -14,5 +15,8 @@ public interface MoodDao {
 
     @Query("SELECT * FROM MoodEntry ORDER BY timestamp DESC")
     List<MoodEntry> getAll();
+
+    @Delete
+    void delete(MoodEntry moodEntry);
 }
 

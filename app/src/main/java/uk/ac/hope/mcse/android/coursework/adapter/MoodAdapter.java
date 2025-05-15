@@ -20,6 +20,10 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
 
     private List<MoodEntry> moodList;
 
+    public List<MoodEntry> getMoodList() {
+        return moodList;
+    }
+
     public MoodAdapter(List<MoodEntry> moodList) {
         this.moodList = moodList;
     }

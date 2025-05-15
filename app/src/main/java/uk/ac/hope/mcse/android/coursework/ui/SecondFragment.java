@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,7 +50,7 @@ public class SecondFragment extends Fragment {
             navController.popBackStack();
         });
 
-        // 🚀 Export button
+        // Export button
         Button exportButton = view.findViewById(R.id.exportButton);
         exportButton.setOnClickListener(v -> {
             List<MoodEntry> moods = MoodDatabase
@@ -58,6 +59,29 @@ public class SecondFragment extends Fragment {
                     .getAll();
             MoodExportHelper.exportMoodsToFile(requireContext(), moods);
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false; // we don't support move
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                MoodEntry moodToDelete = adapter.getMoodList().get(position);
+
+                MoodDatabase.getInstance(requireContext())
+                        .moodDao()
+                        .delete(moodToDelete);
+
+                adapter.getMoodList().remove(position);
+                adapter.notifyItemRemoved(position);
+            }
+        }).attachToRecyclerView(recyclerView);
+
     }
 
     @Override
